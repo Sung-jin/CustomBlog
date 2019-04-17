@@ -40,8 +40,12 @@ $ git clone https://github.com/Sung-jin/CustomBlog.git
 ## How to run
 
 ```$
-$ npm start 
-// supervisor 를 이용하여 파일이 변경, 크래쉬가 나더라도 계속 실행하게끔
+// 총 3개의 커맨드창 or 3가지 명령어를 백그라운드 형태로 실행
+// 추후 완료되었을 경우에 대한 npm script 생성 예정
+// 지금은 총 3개의 npm script 를 실행함으로써 바벨, 서버실행, 테스트 실행
+$ npm run build // 파일이 변경 될 때마다 바벨로 컨버팅을 계속 해주기 위함 babel
+$ npm start     // 서버 실행 (nodemon 이용)
+$ npm test      // 테스트 실행 (mocha 이용)
 ```
 
 
