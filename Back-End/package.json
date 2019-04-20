@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "babel routes -d dist -w",
-    "start": "nodemon ./bin/www",
-    "test": "node_modules/mocha/bin/mocha $(find ./dist -name '*.spec.js') --recursive -w"
+    "build": "babel routes",
+    "start": "nodemon --exec babel-node ./bin/www",
+    "test": "node_modules/mocha/bin/mocha --require @babel/register --recursive -w"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -19,7 +19,9 @@
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3",
+    "@babel/register": "^7.4.0",
     "chai": "^4.2.0",
     "mocha": "^6.1.3",
     "supertest": "^4.0.2"
