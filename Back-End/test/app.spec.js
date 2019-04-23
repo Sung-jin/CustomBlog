@@ -1,21 +1,5 @@
-import request from 'supertest';
-import { expect } from 'chai';
+const { indexTest } = require("./routes.test.spec");
+const { userTest } = require("./routes.user.test.spec");
 
-import app from '../app.js';
-
-describe('GET /', () => {
-  it('should respond with text message "Hello World"', (done) => {
-    request(app)
-      .get('/')
-      .expect(200)
-      .end((err, res) => {
-        if (err) {
-          done(err);
-          return;
-        }
-
-        expect(res.text).to.equal('Hello World');
-        done();
-      });
-  });
-});
+indexTest();
+userTest();
