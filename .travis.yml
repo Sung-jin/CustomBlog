@@ -5,5 +5,8 @@ node_js:
 before_script:
   cd Back-End
 
+before_install:
+  - npm install
+
 after_success:
   - npm run coveralls
