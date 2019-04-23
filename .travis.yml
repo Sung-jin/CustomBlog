@@ -2,5 +2,8 @@ language: node_js
 node_js:
 - "stable"
 
+before_script:
+  cd Back-End
+
 after_success:
   - npm run coveralls
