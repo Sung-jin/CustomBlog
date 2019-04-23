@@ -5,7 +5,8 @@
   "scripts": {
     "build": "babel routes",
     "start": "nodemon --exec babel-node ./bin/www",
-    "test": "mocha --require @babel/register --recursive -w",
+    "test": "mocha --require @babel/register --recursive",
+    "testCMD": "mocha --require @babel/register --recursive -w",
     "cover": "cross-env NODE_ENV=test nyc mocha --require @babel/register --recursive",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
@@ -42,7 +43,6 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
-    "istanbul": "^0.4.5",
     "mocha": "^6.1.3",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^14.0.0",
