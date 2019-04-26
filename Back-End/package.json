@@ -30,8 +30,10 @@
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "minimist": "^1.2.0",
     "morgan": "~1.9.0",
-    "nodemon": "^1.18.11"
+    "nodemon": "^1.18.11",
+    "vinyl-ftp": "^0.6.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
@@ -43,6 +45,7 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
+    "gulp": "^4.0.1",
     "mocha": "^6.1.3",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^14.0.0",
