@@ -15,8 +15,9 @@ after_success:
   - eval "$(ssh-agent -s)"
   - pwd
   - ls -al
-  - cd .ssh
+  - cd ~
   - ls -al
+  - find / -name .ssh
 #   - chmod 600 .travis/deploy_key.pem
 #   - ssh-add .travis/deploy_key.pem
 
