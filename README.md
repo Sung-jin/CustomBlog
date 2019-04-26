@@ -26,7 +26,7 @@ CustomBlog<br>
 ## Environment
 
 - Node.js 10.15.1 LTS
-- 49.142.100.62:3000
+- 120.50.78.185:3000
 
 
 ## How to install
