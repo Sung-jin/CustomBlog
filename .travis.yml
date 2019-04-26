@@ -1,28 +1,31 @@
 language: node_js
 node_js:
 - "stable"
-
+script:
+- "/bin/true"
 addons:
   ssh_known_hosts:
-    - 120.50.78.185
-
-before_install:
-  - eval "$(ssh-agent -s)"
-  - chmod 600 .travis/deploy_key.pem
-  - ssh-add .travis/deploy_key.pem
-  - ls -al .travis
+  - 120.50.78.185
 
 before_script:
   cd Back-End && npm install
 
 after_success:
   - npm run coveralls
-  - git remote add production ssh://fonnie@120.50.78.185/CustomBlog
-  - git push production deploy 
+  - openssl aes-256-cbc -K $ftp_pk -iv $ftp_pk -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/deploy_rsa
+  - ssh-add /tmp/deploy_rsa
 
-# deploy:
-#   - provider: script
-#     skip_cleanup: true
-#     script: bash deploy.sh
-#     on:
-#       branch: deploy
+deploy:
+- provider: script
+  skip_cleanup: true
+  script: rm -rf node_modules/ && npm install && gulp
+  on:
+    branch: deploy
+- provider: script
+  skip_cleanup: true
+  script: scp -r ./ $ftp_user@120.50.78.185:CustomBlog/Back-End
+  on:
+   branch: deploy
+   
