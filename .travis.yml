@@ -2,18 +2,8 @@ language: node_js
 node_js:
 - "stable"
 
-addons:
-  ssh_known_hosts:
-  - 120.50.78.185
-
 before_script:
   cd Back-End && npm install
-
-script:
-  - gulp build --prod
-
-after_script:
-  - gulp deploy --user $ftp_user --password $ftp_pw
 
 after_success:
   - npm run coveralls
