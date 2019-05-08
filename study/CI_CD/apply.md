@@ -159,11 +159,30 @@ after_success:
 * 위와 같이 Travis 및 coveralls 에 설정하면 Travis 에서 빌드 및 테스트 이후 그 결과를 coveralls 에 전송하고 시각화 해줌
 
 ## Deployment
-* ~~지금 집 인터넷에 문제가 발생하여 공유기의 포트포워딩 및 외부 접속에 문제가 발생~~
-* ~~이게 해결되야 로컬 서버에 세팅을 하고 되는걸 확인할텐데...~~
 * 나의 경우 클라우드 서비스를 이용하지 않음
     * 로컬 서버를 사용해서 여기에 파일이 배포되었음 하니, ftp 를 이용
     * 클라우드 (aws, gcp...) 를 이용한 자동 배포는 포스팅이 많음 ㅎㅎ
+* [Travis Custom Deploy 방법을 시도](https://docs.travis-ci.com/user/deployment/custom/)
+  * sftp 의 경우 파일 하나만이면 상관없으나, 여러개 및 디렉토리 구조형태를 curl-sftp 형태로 하기에는 문제가 있으며 오래걸림
+  * git 을 이용한 custom deploy 를 시도하였으나, ssh-agent 가 안먹힘
+    * travis 내부에서 ssh-agent 에 대한 결과 및 ssh 생성 등등 여러가지 해봤으나 잘 안됨
+* 두가지 시도를 통해 생각해낸 방법 => node.js 의 child_process 를 이용하여 shell script 를 통한 시도
+  1. 처음에는 프로세스를 죽이고 폴더를 삭제하고 git clone 을 받아와 npm install 후 npm start 하는 형태로 구현하였으나, 부모 프로세스가 죽는 순간 하위 프로세스도 죽어서 문제 발생 -> 당연한거였음..
+  2. 조금 더 우회해서 git clone 할 폴더 생성하고 routes 아래 파일만 복사하여 현재 실행되고 있는 폴더에 복사하는 방법으로 구현
+
+* 결론
+1. 여러 방법을 시도하였으나, cloud 등과 같은 보편적인 방법이 아닌 로컬 서버로 시도하기 위해 여러가지 시도해봄
+2. nodemon 을 사용하기 때문에 변경되는 부분만 변경해주면 된다는 아이디어를 가지고 시도
+3. deploy 브랜치가 변경될 시 travis 에서 deploy end point 에 내가 설정한 키값과 함께 시도하면 내부적으로 process_child 를 통해 deploy 의 routes 안의 내용을 덮어쓰는 작업을 실행
+
+```
+#!/bin/sh
+
+mkdir ~/deploy && cd ~/deploy
+git clone -b deploy --single-branch 'git repo url'
+cd 'directory' && cp -rf 'deploy folder' 'target folder'
+cd ~ && rm -rf deploy
+```
 
 
 ## 세팅 결과
@@ -180,6 +199,7 @@ before_script:
 
 after_success:
   - npm run coveralls
+  - curl -d '{"key": $deploy_key}' -H "Content-Type: application/json" -X POST http://120.50.78.185:3200/deploy
 ```
 
 ```
