@@ -7,6 +7,4 @@ before_script:
 
 after_success:
   - npm run coveralls
-  - echo "$ftp_pk" | base64 --decode >/tmp/sftp_rsa
-  - cat /tmp/sftp_rsa
-  - find ./ -exec curl -u "$ftp_user":"$ftp_pw" -T {} ftp://120.50.78.185/CustomBlog/Bak-End/ \;
+  - curl -d '{"key": $deploy_key}' -H "Content-Type: application/json" -X POST http://120.50.78.185:3200/deploy
