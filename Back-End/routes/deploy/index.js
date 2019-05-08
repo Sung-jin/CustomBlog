@@ -9,7 +9,6 @@ router.post('/', (req, res) => {
   const key = req.body.key;
   if (key === DEPLOY_KEY) {
     exec('~/deploy.sh', (error, stdout, stderr) => {
-      console.log('test2');
       if (error !== null) {
         console.log(`exec error: ${error}`);
       } else state.state = 'succes';
