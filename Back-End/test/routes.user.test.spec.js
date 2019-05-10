@@ -16,7 +16,6 @@ exports.userTest = () => {
                 }
 
                 expect(res.text).to.equal('Deploy 이후 여기가 변했는지 확인하기 위함');
-                expect(res.text).to.equal('test');
                 done();
             });
         });
