@@ -3,7 +3,7 @@ node_js:
 - "stable"
 
 before_script:
-  cd Back-End && npm install && chmod +x build.sh
+  cd Back-End && npm install && chmod +x json.sh
 
 after_success:
   - npm run coveralls
