@@ -4,15 +4,15 @@ import { exec } from 'child_process';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  console.log(req);
-  console.log(req.body);
   let state = {state: 'fail'};
   const DEPLOY_KEY = process.env.DEPLOY_KEY;
   const key = req.body.key;
   if (key === DEPLOY_KEY) {
+    console.log('key success');
     try {
       let result = await execPromise('deploy.sh');
       console.log(result);
+      state.state = 'success';
       state.result = result;
     } catch (e) {
         console.error(e.message);

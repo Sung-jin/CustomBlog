@@ -5,7 +5,7 @@ import app from '../app.js';
 
 exports.userTest = () => {
     describe('GET /', () => {
-        it('should respond with text message "Deploy 이후 여기가 변했는지 확인하기 위함"', (done) => {
+        it('should respond with text message "Deploy Done Check"', (done) => {
             request(app)
             .get('/user')
             .expect(200)
@@ -15,7 +15,7 @@ exports.userTest = () => {
                     return;
                 }
 
-                expect(res.text).to.equal('Deploy 이후 여기가 변했는지 확인하기 위함');
+                expect(res.text).to.equal('Deploy Done Check');
                 done();
             });
         });
