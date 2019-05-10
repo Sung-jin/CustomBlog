@@ -209,9 +209,9 @@ after_success:
 "scripts": {
     "build": "babel routes",
     "start": "nodemon --exec babel-node ./bin/www",
-    "test": "mocha --require @babel/register --recursive",
+    "test": "mocha --require @babel/polyfill --require @babel/register --recursive",
     "testCMD": "mocha --require @babel/register --recursive -w",
-    "cover": "cross-env NODE_ENV=test nyc mocha --require @babel/register --recursive",
+    "cover": "cross-env NODE_ENV=test nyc mocha --require @babel/polyfill --require @babel/register --recursive",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "nyc": {
