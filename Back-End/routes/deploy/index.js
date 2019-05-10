@@ -4,6 +4,8 @@ import { exec } from 'child_process';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
+  console.log(req);
+  console.log(req.body);
   let state = {state: 'fail'};
   const DEPLOY_KEY = process.env.DEPLOY_KEY;
   const key = req.body.key;
