@@ -5,9 +5,9 @@
   "scripts": {
     "build": "babel routes",
     "start": "nodemon --exec babel-node ./bin/www",
-    "test": "mocha --require @babel/register --recursive",
+    "test": "mocha --require @babel/polyfill --require @babel/register --recursive",
     "testCMD": "mocha --require @babel/register --recursive -w",
-    "cover": "cross-env NODE_ENV=test nyc mocha --require @babel/register --recursive",
+    "cover": "cross-env NODE_ENV=test nyc mocha --require @babel/polyfill --require @babel/register --recursive",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "nyc": {
@@ -32,14 +32,13 @@
     "jade": "~1.11.0",
     "minimist": "^1.2.0",
     "morgan": "~1.9.0",
-    "nodemon": "^1.19.0",
-    "morgan": "~1.9.0",
     "nodemon": "^1.19.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/node": "^7.2.2",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.3",
     "@babel/register": "^7.4.0",
     "babel-plugin-istanbul": "^5.1.2",
