@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/Sung-jin/CustomBlog.svg?branch=master)](https://travis-ci.org/Sung-jin/CustomBlog)
+[![Coverage Status](https://coveralls.io/repos/github/Sung-jin/CustomBlog/badge.svg?branch=master)](https://coveralls.io/github/Sung-jin/CustomBlog?branch=master)
+
+
 # CustomBlog
 
 CustomBlog<br>
