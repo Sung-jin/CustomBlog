@@ -11,6 +11,6 @@ after_success:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: "curl -X POST --data '{\"key\": $deploy_key}' -H \"Content-Type: application/json\" http://120.50.78.185:3200/deploy"
+    script: "curl -d \'{\"key\": $deploy_key}\' -H \"Content-Type: application/json\" -X POST http://120.50.78.185:3200/deploy"
     on:
       branch: deploy

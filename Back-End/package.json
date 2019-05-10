@@ -7,7 +7,7 @@
     "start": "nodemon --exec babel-node ./bin/www",
     "test": "mocha --require @babel/polyfill --require @babel/register --recursive",
     "testCMD": "mocha --require @babel/register --recursive -w",
-    "cover": "cross-env NODE_ENV=test nyc mocha --require @babel/register --recursive",
+    "cover": "cross-env NODE_ENV=test nyc mocha --require @babel/polyfill --require @babel/register --recursive",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "nyc": {
@@ -31,8 +31,6 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "minimist": "^1.2.0",
-    "morgan": "~1.9.0",
-    "nodemon": "^1.19.0",
     "morgan": "~1.9.0",
     "nodemon": "^1.19.0"
   },
