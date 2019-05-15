@@ -199,7 +199,13 @@ before_script:
 
 after_success:
   - npm run coveralls
-  - curl -d '{"key": $deploy_key}' -H "Content-Type: application/json" -X POST http://120.50.78.185:3200/deploy
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: "echo '{\"key\":\"$deploy_key\"}' > key.json && cat key.json && curl --data @key.json -H \"Content-Type: application/json\" -X POST http://120.50.78.185:3200/deploy"
+    on:
+      branch: deploy
 ```
 
 ```

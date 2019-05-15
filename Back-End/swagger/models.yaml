@@ -1,0 +1,28 @@
+definitions:
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ExampleModels:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Meaningless test id
+      sex:
+        type: string
+        description: Meaningless test sex
+        enum:
+          - M
+          - F
+    required:
+      - id
+      - sex

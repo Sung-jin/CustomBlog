@@ -4,9 +4,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const AVSwagger = require('./swagger/AVSwagger');
+
 const indexRouter = require('./routes');
 const deployReouter = require('./routes/deploy');
-const userRouter = require('./routes/user/test');
+const templateRouter = require('./routes/apiTemplate');
 
 const app = express();
 
@@ -20,8 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api-docs', AVSwagger.swaggerUi.serve, AVSwagger.swaggerUi.setup(AVSwagger.swaggerSpec));
 app.use('/', indexRouter);
-app.use('/user', userRouter);
+app.use('/template', templateRouter);
 app.use('/deploy', deployReouter);
 
 // catch 404 and forward to error handler
