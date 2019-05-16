@@ -1,7 +1,3 @@
-import express from 'express';
-
-const router = express.Router();
-
 /**
    * @swagger
    * path:
@@ -178,58 +174,82 @@ const router = express.Router();
    *       deprecated: true
    */
 
-router.get('/', (req, res) => {
-  const id = req.query.id;
+import express from 'express';
+import { check, validationResult } from "express-validator/check";
 
-  if (id === undefined){
-    res.json({state: 400});
-  } else {
-    res.json({
+const router = express.Router();
+
+router.get('/', [
+  check('id').exists().isInt().withMessage('id must be an int').toInt()
+], (req, res) => {
+  const errors = validationResult(req);
+
+  if (errors.isEmpty()) {
+    const id = parseInt(req.query.id);
+
+    return res.jsonp({
       id: id,
-      status: 200
+      state: 200
     });
+  } else {
+    return res.status(422).jsonp({ errors: errors.array()});
   }
 });
 
-router.post('/', (req, res) => {
-  const id = req.body.id;
-  const sex = req.body.sex;
+router.post('/', [
+  check('id').exists().isInt().withMessage('id must be an int').toInt(),
+  check('sex').exists().isIn(['M', 'F', 'm', 'f']).withMessage('sex must have \'M\' or \'F\'.')
+], (req, res) => {
+  const errors = validationResult(req);
+  
+  if (errors.isEmpty()) {
+    const id = req.body.id;
+    const sex = req.body.sex.toUpperCase();
 
-  if (id === undefined || sex === undefined || (sex !== 'M' && sex !== 'F')){
-    res.json({state: 400});
-  } else {
-    res.json({
-      id: id,
-      sex: sex,
-      status: 200
-    });
-  }
-});
-
-router.put('/', (req, res) => {
-  const id = req.body.id;
-  const sex = req.body.sex;
-
-  if (id === undefined || sex === undefined || (sex !== 'M' && sex !== 'F')){
-    res.json({state: 400});
-  } else {
-    res.json({
+    res.jsonp({
       id: id,
       sex: sex,
-      status: 200
+      state: 200
     });
+  } else {
+    return res.status(422).jsonp({ errors: errors.array()});
   }
 });
 
-router.delete('/:id', (req, res) => {
-  const id = req.params.id;
+router.put('/', [
+  check('id').exists().isInt().withMessage('id must be an int').toInt(),
+  check('sex').exists().isIn(['M', 'F', 'm', 'f']).withMessage('sex must have \'M\' or \'F\'.')
+], (req, res) => {
+  const errors = validationResult(req);
+  
+  if (errors.isEmpty()) {
+    const id = req.body.id;
+    const sex = req.body.sex.toUpperCase();
 
-  if (id === undefined){
-    res.json({state: 400});
-  } else {
-    res.json({
-      id: id
+    res.jsonp({
+      id: id,
+      sex: sex,
+      state: 200
     });
+  } else {
+    return res.status(422).jsonp({ errors: errors.array()});
+  }
+});
+
+router.delete('/:id', [
+  check('id').exists().isInt().withMessage('id must be an int').toInt()
+], (req, res) => {
+  const errors = validationResult(req);
+
+  if (errors.isEmpty()) {
+    const id = req.params.id;
+
+    return res.jsonp({
+      id: id,
+      state: 200
+    });
+  } else {
+    return res.status(422).jsonp({ errors: errors.array()});
   }
 });
 

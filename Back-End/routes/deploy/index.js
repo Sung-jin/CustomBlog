@@ -16,9 +16,11 @@ router.post('/', async (req, res) => {
         console.error(e.message);
         state.error = e;
     }
+  } else {
+    state.message = 'check deploy key';
   }
 
-  return res.json(state);
+  return res.jsonp(state);
 });
 
 function execPromise(command) {
@@ -28,7 +30,7 @@ function execPromise(command) {
               reject(error);
               return;
           }
-          resolve(stdout.trim());
+          resolve('deploy success');
       });
   });
 }

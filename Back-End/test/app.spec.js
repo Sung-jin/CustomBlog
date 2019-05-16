@@ -1,5 +1,5 @@
 const { indexTest } = require("./routes.test.spec");
-const { userTest } = require("./routes.user.test.spec");
+const { templateTest } = require("./routes.apiTemplate.test.spec");
 
 indexTest();
-userTest();
+templateTest();
