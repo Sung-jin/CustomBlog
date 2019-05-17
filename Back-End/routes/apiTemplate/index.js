@@ -26,21 +26,15 @@
    *               id:
    *                 type: integer
    *               state:
-   *                 type: boolean
+   *                 type: integer
    *             example:
    *               id: 0
-   *               state: true
-   *         400:
+   *               state: 200
+   *         422:
    *           description: fail
    *           schema:
-   *             type: object
-   *             properties:
-   *               state:
-   *                 type: boolean
-   *             example:
-   *               state: false
+   *             $ref: "#/definitions/ValidatorErrorModels"
    *       deprecated: true
-   * 
    * 
    * 
    *     post:
@@ -70,20 +64,15 @@
    *               sex:
    *                 type: string
    *               state:
-   *                 type: boolean
+   *                 type: integer
    *             example:
    *               id: 0
    *               sex: M
-   *               state: true
-   *         400:
+   *               state: 200
+   *         422:
    *           description: fail
    *           schema:
-   *             type: object
-   *             properties:
-   *               state:
-   *                 type: boolean
-   *             example:
-   *               state: false
+   *             $ref: "#/definitions/ValidatorErrorModels"
    *       deprecated: true
    * 
    * 
@@ -115,20 +104,15 @@
    *               sex:
    *                 type: string
    *               state:
-   *                 type: boolean
+   *                 type: integer
    *             example:
    *               id: 0
    *               sex: M
-   *               state: true
-   *         400:
+   *               state: 200
+   *         422:
    *           description: fail
    *           schema:
-   *             type: object
-   *             properties:
-   *               state:
-   *                 type: boolean
-   *             example:
-   *               state: false
+   *             $ref: "#/definitions/ValidatorErrorModels"
    *       deprecated: true
    * 
    * 
@@ -157,20 +141,15 @@
    *               id:
    *                 type: integer
    *               state:
-   *                 type: boolean
+   *                 type: integer
    *             example:
    *               id: 0
    *               sex: M
-   *               state: true
-   *         400:
+   *               state: 200
+   *         422:
    *           description: fail
    *           schema:
-   *             type: object
-   *             properties:
-   *               state:
-   *                 type: boolean
-   *             example:
-   *               state: false
+   *             $ref: "#/definitions/ValidatorErrorModels"
    *       deprecated: true
    */
 

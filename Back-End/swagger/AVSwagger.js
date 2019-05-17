@@ -23,7 +23,7 @@ const swaggerDefinition = {
         },
         {
             name: 'template',
-            description: 'user API 에 대한 설명',
+            description: '이 API 에 대한 설명',
             externalDocs: {
                 description: '이 API 에 대한 추가 문서 - ',
                 url: '120.50.78.185'

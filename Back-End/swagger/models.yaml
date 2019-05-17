@@ -1,8 +1,37 @@
 definitions:
-  
-  
-  
-  
+  DeployModels:
+    type: object
+    properties:
+      key:
+        type: string
+        description: deploy 하기 위한 key
+    required:
+      - key
+
+  ValidatorErrorModels:
+    type: object
+    description: express-validator 유효 검사의 error object
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/ValidatorErrorContentModels'
+
+  ValidatorErrorContentModels:
+    type: object
+    properties:
+      location:
+        type: string
+        description: req 유효 검사에서 문제가 발생하는 부분
+      param:
+        type: string
+        description: req 유효 검사에서 문제가 발생하는 parameter
+      value:
+        type: string
+        description: req 유효 검사에서 문제가 발생하는 input data
+      msg:
+        type: string
+        description: 문제가 발생하는 유효 검사에 대한 메시지
   
   
   
