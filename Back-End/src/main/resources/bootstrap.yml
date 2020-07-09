@@ -2,3 +2,27 @@ spring:
   profiles.active: local
   application:
     name: custom-blog
+
+---
+
+spring:
+  profiles: local
+  cloud.config.uri: https://config.fonnie.shop
+
+---
+
+spring:
+  profiles: dev
+  cloud.config.uri: https://config.fonnie.shop
+
+---
+
+spring:
+  profiles: stage
+  cloud.config.uri: https://config.fonnie.shop
+
+---
+
+spring:
+  profiles: prod
+  cloud.config.uri: https://config.fonnie.shop

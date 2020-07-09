@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  custom-blog:
+    build:
+      context: .
+    container_name: custom-blog
+    ports:
+    - 8080:8080
